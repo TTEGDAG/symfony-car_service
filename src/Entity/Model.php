@@ -40,6 +40,15 @@ class Model
         $this->cars = new ArrayCollection();
     }
 
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->make.' '.$this->name;
+
+    }
+
     public function getId(): ?int
     {
         return $this->id;
