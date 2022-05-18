@@ -49,9 +49,11 @@ class AppLoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        if(in_array('ROLE_ADMIN', $token->getRoleNames()))
+        {
+            return new RedirectResponse($this->urlGenerator->generate('admin'));
+        }
+        return new RedirectResponse($this->urlGenerator->generate('app_site'));
     }
 
     protected function getLoginUrl(Request $request): string

@@ -5,14 +5,16 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixture extends Fixture
 {
-    public function hashPassword(string $plainPassword): string
-    {
-        return $this->encoder->encodePassword(new User(), $plainPassword);
-    }
 
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder){
+        $this->passwordEncoder = $passwordEncoder;
+    }
     public function load(ObjectManager $manager): void
     {
         $user = new User();

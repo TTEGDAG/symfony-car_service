@@ -26,7 +26,12 @@ class SecurityController extends AbstractController
         return $this->render('@EasyAdmin/page/login.html.twig', [
             // parameters usually defined in Symfony login forms
             'error' => $error,
-            'last_username' => $lastUsername
+            'last_username' => $lastUsername,
+            'csrf_token_intention'=> 'authenticate',
+            'username_label'=>'Enter your email',
+            'password_label'=>'Enter your password',
+            'username_parameter'=>'email',
+            'password_parameter'=>'password'
         ]);
 
         //return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
