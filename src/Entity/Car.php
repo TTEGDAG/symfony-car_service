@@ -37,6 +37,11 @@ class Car
      */
     private $distance;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="car")
+     */
+    private $customer;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Car
     public function setDistance(int $distance): self
     {
         $this->distance = $distance;
+
+        return $this;
+    }
+
+    public function getCustomer(): ?Customer
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(?Customer $customer): self
+    {
+        $this->customer = $customer;
 
         return $this;
     }
