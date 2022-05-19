@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CarRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class Car
      * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="car")
      */
     private $customer;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Inspection::class, mappedBy="car")
+     */
+    private $inspections;
+
+    public function __construct()
+    {
+        $this->inspections = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +115,36 @@ class Car
     public function setCustomer(?Customer $customer): self
     {
         $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Inspection>
+     */
+    public function getInspections(): Collection
+    {
+        return $this->inspections;
+    }
+
+    public function addInspection(Inspection $inspection): self
+    {
+        if (!$this->inspections->contains($inspection)) {
+            $this->inspections[] = $inspection;
+            $inspection->setCar($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInspection(Inspection $inspection): self
+    {
+        if ($this->inspections->removeElement($inspection)) {
+            // set the owning side to null (unless already changed)
+            if ($inspection->getCar() === $this) {
+                $inspection->setCar(null);
+            }
+        }
 
         return $this;
     }
