@@ -54,6 +54,16 @@ class Car
         $this->inspections = new ArrayCollection();
     }
 
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+
+        return $this->model;
+
+    }
+
     public function getId(): ?int
     {
         return $this->id;

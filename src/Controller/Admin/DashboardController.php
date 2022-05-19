@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Car;
+use App\Entity\Inspection;
 use App\Entity\Make;
 use App\Entity\Model;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -33,6 +34,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Make', 'fas fa-list', Make::class);
         yield MenuItem::linkToCrud('Model', 'fas fa-list', Model::class);
         yield MenuItem::linkToCrud('Car', 'fas fa-list', Car::class);
+        yield MenuItem::linkToCrud('Inspection', 'fas fa-list', Inspection::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

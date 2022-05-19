@@ -28,6 +28,14 @@ class Employee extends User
         $this->inspections = new ArrayCollection();
     }
 
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->getFirstName().' '.$this->getLastName();
+
+    }
 
     public function getJobTitle(): ?string
     {
