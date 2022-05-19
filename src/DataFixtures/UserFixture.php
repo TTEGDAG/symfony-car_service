@@ -27,7 +27,7 @@ class UserFixture extends Fixture
         $manager->persist($user);
 
         $user2 = new User();
-        $user2->setRoles(['ROLE_USER']);
+        $user2->setRoles(['ROLE_USER', 'ROLE_MANAGE']);
         $user2->setEmail('user@carservice.com');
         $user2->setFirstName('Aleksander');
         $user2->setLastName('Kowalski');
